@@ -2,8 +2,8 @@
 
 class Library {
 
-    public $books;
-    public $members;
+    private $books;
+    private $members;
 
     public function addBook(Book $book){
         $this->books[] = $book;
