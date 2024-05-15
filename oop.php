@@ -13,7 +13,7 @@ class Library {
         $this->members[] = $member;
     }
 
-    public function printAvailableCopies(){
+    public function displayAvailableBooks(){
         foreach ($this->books as $book){
             echo "Available Copies of '" . $book->getTitle() . "': " . $book->getAvailableCopies() . "\n";
         }
@@ -84,4 +84,4 @@ $member1->borrowBook($book1);
 $member2->borrowBook($book2);
 // $member2->returnBook($book2);
 
-$library->printAvailableCopies();
+$library->displayAvailableBooks();
