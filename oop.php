@@ -51,12 +51,16 @@ class Library {
     private $books = [];
     private $members = [];
 
-    public function addBook( Book $book ) {
-        $this->books[] = $book;
+    public function addBook( Book ...$books ) {
+        foreach ( $books as $book ) {
+            $this->books[] = $book;
+        }
     }
 
-    public function addMember( Member $member ) {
-        $this->members[] = $member;
+    public function addMember( Member ...$members ) {
+        foreach ( $members as $member ) {
+            $this->members[] = $member;
+        }
     }
 
     public function displayAvailableBooks() {
@@ -74,11 +78,8 @@ $member2 = new Member( "Jane Smith" );
 
 $library = new Library;
 
-$library->addBook( $book1 );
-$library->addBook( $book2 );
-
-$library->addMember( $member1 );
-$library->addMember( $member2 );
+$library->addBook( $book1, $book2 );
+$library->addMember( $member1, $member2 );
 
 $member1->borrowBook( $book1 );
 $member2->borrowBook( $book2 );
