@@ -1,30 +1,10 @@
 <?php
 
-class Library {
-
-    private $books;
-    private $members;
-
-    public function addBook( Book $book ) {
-        $this->books[] = $book;
-    }
-
-    public function addMember( Member $member ) {
-        $this->members[] = $member;
-    }
-
-    public function displayAvailableBooks() {
-        foreach ( $this->books as $book ) {
-            echo "Available Copies of '" . $book->getTitle() . "': " . $book->getAvailableCopies() . "\n";
-        }
-    }
-}
-
 class Book {
     private $title;
     private $availableCopies;
 
-    public function __construct( $title, $availableCopies ) {
+    public function __construct( string $title = '', int $availableCopies = 0) {
         $this->title = $title;
         $this->availableCopies = $availableCopies;
     }
@@ -38,7 +18,9 @@ class Book {
     }
 
     public function borrowBook() {
-        $this->availableCopies -= 1;
+        if ($this->availableCopies) {
+            $this->availableCopies -= 1;
+        }
     }
 
     public function returnBook() {
@@ -49,7 +31,7 @@ class Book {
 class Member {
     private $name;
 
-    public function __construct( $name ) {
+    public function __construct( string $name = '') {
         $this->name = $name;
     }
 
@@ -62,6 +44,26 @@ class Member {
     }
     public function returnBook( Book $book ) {
         $book->returnBook();
+    }
+}
+
+class Library {
+
+    private $books = [];
+    private $members = [];
+
+    public function addBook( Book $book ) {
+        $this->books[] = $book;
+    }
+
+    public function addMember( Member $member ) {
+        $this->members[] = $member;
+    }
+
+    public function displayAvailableBooks() {
+        foreach ( $this->books as $book ) {
+            echo "Available Copies of '" . $book->getTitle() . "': " . $book->getAvailableCopies() . "\n";
+        }
     }
 }
 
@@ -80,8 +82,6 @@ $library->addMember( $member1 );
 $library->addMember( $member2 );
 
 $member1->borrowBook( $book1 );
-// $member1->returnBook($book1);
 $member2->borrowBook( $book2 );
-// $member2->returnBook($book2);
 
 $library->displayAvailableBooks();
