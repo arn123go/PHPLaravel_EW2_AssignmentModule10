@@ -48,7 +48,6 @@ class Member {
 }
 
 class Library {
-
     private $books = [];
     private $members = [];
 
