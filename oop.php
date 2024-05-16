@@ -4,7 +4,7 @@ class Book {
     private $title;
     private $availableCopies;
 
-    public function __construct( string $title = '', int $availableCopies = 0) {
+    public function __construct( string $title = '', int $availableCopies = 0 ) {
         $this->title = $title;
         $this->availableCopies = $availableCopies;
     }
@@ -18,7 +18,7 @@ class Book {
     }
 
     public function borrowBook() {
-        if ($this->availableCopies) {
+        if ( $this->availableCopies ) {
             $this->availableCopies -= 1;
         }
     }
@@ -31,7 +31,7 @@ class Book {
 class Member {
     private $name;
 
-    public function __construct( string $name = '') {
+    public function __construct( string $name = '' ) {
         $this->name = $name;
     }
 
