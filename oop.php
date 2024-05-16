@@ -42,6 +42,7 @@ class Member {
     public function borrowBook( Book $book ) {
         $book->borrowBook();
     }
+    
     public function returnBook( Book $book ) {
         $book->returnBook();
     }
