@@ -48,23 +48,23 @@ class Member {
 }
 
 class Library {
-    private $books = [];
-    private $members = [];
+    private static $books = [];
+    private static $members = [];
 
-    public function addBook( Book ...$books ) {
+    public static function addBook( Book ...$books ) {
         foreach ( $books as $book ) {
-            $this->books[] = $book;
+            self::$books[] = $book;
         }
     }
 
-    public function addMember( Member ...$members ) {
+    public static function addMember( Member ...$members ) {
         foreach ( $members as $member ) {
-            $this->members[] = $member;
+            self::$members[] = $member;
         }
     }
 
-    public function displayAvailableBooks() {
-        foreach ( $this->books as $book ) {
+    public static function displayAvailableBooks() {
+        foreach ( self::$books as $book ) {
             echo "Available Copies of '" . $book->getTitle() . "': " . $book->getAvailableCopies() . "\n";
         }
     }
@@ -76,12 +76,10 @@ $book2 = new Book( "To Kill a Mockingbird", 3 );
 $member1 = new Member( "John Doe" );
 $member2 = new Member( "Jane Smith" );
 
-$library = new Library;
-
-$library->addBook( $book1, $book2 );
-$library->addMember( $member1, $member2 );
+Library::addBook( $book1, $book2 );
+Library::addMember( $member1, $member2 );
 
 $member1->borrowBook( $book1 );
 $member2->borrowBook( $book2 );
 
-$library->displayAvailableBooks();
+Library::displayAvailableBooks();
